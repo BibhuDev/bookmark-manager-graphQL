@@ -1,1 +1,0 @@
-console.log("Bookmark Manager API");
