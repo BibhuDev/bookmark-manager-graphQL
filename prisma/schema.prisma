@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Folder {
+  id        String     @id @default(uuid())
+  name      String
+  createdAt DateTime   @default(now()) @map("created_at")
+  bookmarks Bookmark[]
+
+  @@map("folders")
+}
+
+model Bookmark {
+  id        String   @id @default(uuid())
+  title     String
+  url       String
+  tags      String[] @default([])
+  folderId  String   @map("folder_id")
+  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([folderId])
+  @@index([title])
+  @@index([createdAt(sort: Desc), id(sort: Desc)])
+  @@map("bookmarks")
+}
