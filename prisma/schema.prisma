@@ -16,13 +16,14 @@ model Folder {
 }
 
 model Bookmark {
-  id        String   @id @default(uuid())
-  title     String
-  url       String
-  tags      String[] @default([])
-  folderId  String   @map("folder_id")
-  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now()) @map("created_at")
+  id          String   @id @default(uuid())
+  title       String
+  url         String
+  description String?
+  tags        String[] @default([])
+  folderId    String   @map("folder_id")
+  folder      Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@index([folderId])
   @@index([title])
