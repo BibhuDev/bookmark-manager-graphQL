@@ -84,16 +84,6 @@ The GraphQL API will then be available at the URL shown by the development serve
 
 ## Database
 
-PostgreSQL runs locally through Docker Compose.
-
-Prisma is used for:
-
-* Database schema definition
-* Type-safe database access
-* Relationship management
-* Migrations
-* Prisma Client generation
-
 Database changes should be made through the Prisma schema and generated using Prisma's migration tooling:
 
 ```bash
